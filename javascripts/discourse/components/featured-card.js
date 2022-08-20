@@ -18,6 +18,16 @@ export default Component.extend({
       settings.featured_tags.split("|").includes(element)
     );
   },
+    
+  @discourseComputed("topic.views")
+  numOfViews(views) {
+    return views
+  },
+
+  @discourseComputed("topic.like_count")
+  numOfLikes(like_count) {
+    return like_count
+  },
 
   @discourseComputed("topic.thumbnails")
   srcset(thumbnails) {
