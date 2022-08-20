@@ -43,7 +43,7 @@ export default Component.extend({
   },
 
   loadTopics() {
-    const loadParams = { tags: featuredTags, period: settings.top_period };
+    const loadParams = { order: settings.sort_by};
     if (settings.featured_category > 0) {
       loadParams.category = settings.featured_category;
     }
@@ -52,6 +52,7 @@ export default Component.extend({
       .findFiltered("topicList", {
         filter: settings.topic_source,
         params: loadParams,
+        ascending: true,
       })
       .then((list) => {
         this.set("list", list);
@@ -62,11 +63,7 @@ export default Component.extend({
   @discourseComputed("list.topics")
   filteredTopics(topics) {
     if (!topics) return;
-    let filteredTopics = topics.filter((topic) => topic.tags && settings.featured_tags.split("|").some(tag=> topic.tags.includes(tag)));
-
-    if (settings.randomize_topics) {
-      filteredTopics = shuffle(filteredTopics);
-    }
+    let filteredTopics = topics;
 
     return filteredTopics.slice(0, settings.maximum_topic_count);
   },
