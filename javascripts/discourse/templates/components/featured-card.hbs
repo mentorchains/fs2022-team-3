@@ -1,13 +1,15 @@
 <a class="card-content" href={{url}}>
-  {{#if (theme-setting "show_tag")}}
-    <div class="discourse-tags">
-      <a
-        href={{tagUrl}}
-        data-tag-name={{tag}}
+   <div class="discourse-tags">
+      {{#if sortByViews}}
+      <span
         class="discourse-tag box"
-      >{{tag}}</a>
+      >{{numOfViews}} views</span>
+      {{else}}
+      <span
+        class="discourse-tag box"
+      >{{numOfLikes}} likes</span>
+      {{/if}}
     </div>
-  {{/if}}
   {{#if (theme-setting "show_image")}}
     <div class="card-image">
       {{#if topic.thumbnails}}
