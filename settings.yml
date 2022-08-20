@@ -82,3 +82,11 @@ plugin_outlet:
     - "below-site-header"
     - "discovery-list-container-top"
   description: "Advanced layout setting"
+sort_by:
+  type: enum
+  default: "views"
+  choices:
+    - views
+    - likes
+  description: "choose a parameter to sort the cards"
+
